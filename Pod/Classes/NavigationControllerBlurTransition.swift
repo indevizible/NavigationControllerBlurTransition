@@ -100,7 +100,7 @@ internal class NavigationControllerBlurTransition: NSObject, UIViewControllerAni
     {
         self.blurTransitionContainerView.addSubview(fromView)
         self.blurTransitionContainerView.addSubview(self.blurView)
-        self.blurView.alpha = 0
+        self.blurView.effect = nil
         
         containerView.addSubview(self.blurTransitionContainerView)
 
@@ -118,7 +118,7 @@ internal class NavigationControllerBlurTransition: NSObject, UIViewControllerAni
         containerView.layoutIfNeeded()
         
         self.performAnimationInContext(context, animations: { () -> Void in
-            self.blurView.alpha = 1
+            self.blurView.effect = UIBlurEffect(style: .Dark)
 
             destinationView.removeInstalledConstraints()
             
@@ -191,7 +191,7 @@ internal class NavigationControllerBlurTransition: NSObject, UIViewControllerAni
             destinationView.makeConstraintsToRightOfView(containerView)
 
             containerView.layoutIfNeeded()
-            self.blurView.alpha = 0.0
+            self.blurView.effect = nil
             
             }, completion: {
                 self.blurTransitionContainerView.removeFromSuperview()
